@@ -43,13 +43,21 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  href,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { href?: string }) {
+  // If href is provided, render an anchor tag, otherwise render a button
+  const Component = href ? "a" : ButtonPrimitive;
+  
+  // When rendering an anchor, we don't want to pass the 'type' prop (if it exists)
+  const { type, ...restProps } = props;
+  
   return (
-    <ButtonPrimitive
+    <Component
+      href={href || undefined}
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
+      {...(href ? restProps : props)}
     />
   )
 }
