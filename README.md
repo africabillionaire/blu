@@ -1,11 +1,21 @@
-# Bluzoft Digital Transformation Agency
+# Next.js template
 
+This is a Next.js template with shadcn/ui.
 
-## Skill Modules
+## Adding components
 
-The following skill modules are referenced in the implementation plan and stored in the `docs/` directory:
-- **detail design**: Principles for polished interactions and visual design
-- **muller-brockmann-grid-systems**: Grid-based layout systems for timeless elegance
-- **ux-psychology-for-addictive-app**: Ethical engagement and user psychology principles
+To add components to your app, run the following command:
 
-## Getting Started
+```bash
+npx shadcn@latest add button
+```
+
+This will place the ui components in the `components` directory.
+
+## Using components
+
+To use the components in your app, import them as follows:
+
+```tsx
+import { Button } from "@/components/ui/button";
+```
