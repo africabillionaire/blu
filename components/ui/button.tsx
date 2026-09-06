@@ -16,6 +16,7 @@ const buttonVariants = cva(
           "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
+        brand: "bg-destructive text-white hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -49,15 +50,15 @@ function Button({
   // If href is provided, render an anchor tag, otherwise render a button
   const Component = href ? "a" : ButtonPrimitive;
   
-  // When rendering an anchor, we don't want to pass the 'type' prop (if it exists)
-  const { type, ...restProps } = props;
+  // When rendering an anchor, we do not want to pass the 'type' and 'ref' props
+  const { type, ref, ...restProps } = props;
   
   return (
     <Component
       href={href || undefined}
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
-      {...(href ? restProps : props)}
+      {...(href ? restProps : props as any)}
     />
   )
 }
